@@ -1,171 +1,203 @@
-# 🎮 TCP Game Server-Client
+Dựa trên nội dung từ **Documentation.pdf** và bố cục hiện tại của **README.md**, mình đã cải tiến lại file `README.md` sao cho đồng bộ, chuyên nghiệp và chứa đầy đủ thông tin kỹ thuật, hướng dẫn triển khai, cách chơi, và kiến trúc hệ thống.
+
+Dưới đây là phiên bản đã được làm lại:
+
+---
+
+```markdown
+# 🏰 TCR - Tower Defense TCP Game (Multiplayer)
 
 <div align="center">
-  <img src="https://img.shields.io/badge/Go-1.16+-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go Version"/>
-  <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="License"/>
-  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20MacOS-blue?style=for-the-badge" alt="Platform"/>
+  <img src="https://img.shields.io/badge/Go-1.24+-00ADD8?style=for-the-badge&logo=go&logoColor=white" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20MacOS-blue?style=for-the-badge" />
 </div>
-
-<br/>
 
 <div align="center">
-  <h3>🚀 A powerful TCP-based game server-client implementation with advanced features</h3>
+  <h3>⚔️ Multiplayer tower defense game using Go and TCP socket programming</h3>
 </div>
 
-<br/>
+---
 
-## 📋 Key Features
+## 🧩 System Overview
 
-<table>
-<tr>
-<td width="50%">
+TCR is a real-time, multiplayer tower defense game built using Go. It operates on a client-server model with TCP sockets for communication. Two players battle using assigned troops to destroy the opponent's King Tower.
 
-### 🎯 Authentication
-- Secure user login system
-- Account registration
-- Password encryption
-- Session management
+### 🧱 Architecture Diagram
 
-</td>
-<td width="50%">
+```
 
-### 🎮 Game Management
-- Real-time game sessions
-- Player matchmaking
-- Game state synchronization
-- Multiplayer support
+┌────────────┐   TCP Socket   ┌────────────┐
+│   Client   │◀──────────────▶│   Server   │
+│ clients.go │                │ server.go  │
+└────────────┘                └────────────┘
+│
+▼
+┌─────────────┐
+│  JSON Data  │
+└─────────────┘
 
-</td>
-</tr>
-<tr>
-<td width="50%">
+```
 
-### 📊 Ranking System
-- Player statistics
-- Global leaderboards
-- Achievement tracking
-- Performance metrics
+---
 
-</td>
-<td width="50%">
+## 📦 Project Structure
 
-### 🔒 Security
-- Data encryption
-- Anti-cheat protection
-- DDoS prevention
-- Secure communication
+```
 
-</td>
-</tr>
-</table>
+tcr\_project/
+├── main.go              # Entry point
+├── clients.go           # Client logic
+├── server/server.go     # Server logic
+├── models/entities.go   # Data models: Player, Troop, Tower
+├── utils/
+│   ├── json\_utils.go    # JSON read/write
+│   └── level\_utils.go   # Leveling system
+├── data/
+│   ├── players.json     # User credentials
+│   ├── troops.json      # Troop definitions
+│   └── towers.json      # Tower definitions
+└── go.mod               # Go module definition
 
-## 🛠️ Installation
+````
+
+---
+
+## 🔑 Features
+
+- 🔐 **User Authentication**
+- 🎮 **Real-time Battle with Turn-Based Logic**
+- 🏹 **Troop vs Tower Mechanics**
+- 📈 **EXP System with Level Ups**
+- 💬 **Text-Based Interaction**
+- 🌐 **Multiplayer over TCP**
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Go 1.16 or higher
-- Git
-- Basic knowledge of TCP networking
 
-### Quick Start
+- Go 1.24+ installed
+- Open TCP port 8080
+- OS: Windows, macOS, or Linux
+
+### Setup
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/tcp-game-server.git
+# Clone project
+git clone https://github.com/yourusername/tcr-tower-defense.git
+cd tcr-tower-defense
 
-# Navigate to project directory
-cd tcp-game-server
+# Create data directory and add required files
+mkdir -p data
+# Ensure data/players.json, troops.json, and towers.json are correctly filled
 
-# Install dependencies
-go mod download
+# Initialize Go module
+go mod tidy
+````
 
-# Build the project
-go build -o server.exe server.go
-go build -o client.exe client.go
-```
+---
 
-## 🎮 How to Play
+## ▶️ Running the Game
 
-### Starting the Server
+### Start the Server
+
 ```bash
-./server.exe
+go run main.go
+# Output: Server đang chạy trên cổng 8080...
 ```
 
-### Starting the Client
+### Start Clients (in separate terminals)
+
 ```bash
-./client.exe
+go run clients.go
 ```
 
-### Available Commands
+Repeat for second client.
 
-<table>
-<tr>
-<th>Command</th>
-<th>Description</th>
-</tr>
-<tr>
-<td><code>/login [username] [password]</code></td>
-<td>Login to your account</td>
-</tr>
-<tr>
-<td><code>/register [username] [password]</code></td>
-<td>Create a new account</td>
-</tr>
-<tr>
-<td><code>/play</code></td>
-<td>Start a new game session</td>
-</tr>
-<tr>
-<td><code>/quit</code></td>
-<td>Exit the game</td>
-</tr>
-</table>
+---
 
-## 📁 Project Structure
+## 🎮 Game Flow
 
+1. Players authenticate with username/password.
+2. Server matches two players.
+3. Each player receives 3 random troops.
+4. Players take turns attacking towers.
+5. Game ends when a King Tower is destroyed.
+6. Winner gains EXP and may level up.
+
+---
+
+## 📡 Protocol Communication (PDUs)
+
+| Phase      | Direction       | Message Type      | Example                                 |
+| ---------- | --------------- | ----------------- | --------------------------------------- |
+| Auth       | Server → Client | Username Prompt   | "Nhập username:"                        |
+|            | Client → Server | Username          | "player1\n"                             |
+|            | Server → Client | Auth Result       | "Đăng nhập thành công!"                 |
+| Game Setup | Server → Client | Troop Assignment  | "Bạn đã nhận được 3 quân: ..."          |
+|            | Server → Client | Game Start        | "Trận đấu bắt đầu! Bạn là Người chơi 1" |
+| Battle     | Server → Client | Turn Notification | "Lượt của bạn (Player 1)"               |
+|            | Client → Server | Troop Choice      | "1\n"                                   |
+|            | Server → Client | Battle Result     | "Pawn tấn công Guard Tower 1: ..."      |
+| Game End   | Server → Client | Victory Message   | "Người chơi 1 đã chiến thắng!"          |
+
+---
+
+## ⚙️ Configuration
+
+You can adjust the following in `server.go` and `clients.go`:
+
+```go
+// server.go
+const serverPort = ":8080"
+const lobbyQueueSize = 10
+const connectionTimeout = 30
+
+// clients.go
+const serverAddress = "localhost:8080"
+const maxRetries = 3
+const retryDelay = 2 * time.Second
 ```
-.
-├── server.go          # Main server implementation
-├── client.go          # Main client implementation
-├── clients.go         # Client management system
-├── json_utils.go      # JSON data handling
-├── level_utils.go     # Level progression system
-├── go.mod            # Go module dependencies
-└── README.md         # Project documentation
-```
 
-## 🔒 Security Features
+---
+
+## 🧪 Troubleshooting
+
+| Issue                   | Solution                               |
+| ----------------------- | -------------------------------------- |
+| Port already in use     | Change port in `server.go`             |
+| Connection refused      | Ensure server is running first         |
+| JSON file not found     | Verify `data/` folder and its contents |
+| Wrong login credentials | Use valid entries from `players.json`  |
+
+---
+
+## 🧱 Extending the Game
+
+* ➕ Add new troops/towers → Edit `troops.json` or `towers.json`
+* 👥 Add more players → Edit `players.json`
+* 🔄 Improve logic → Modify `server.go`, `clients.go`, or utils
+
+---
+
+## 🧪 Testing Tips
+
+* Simulate 2 clients concurrently
+* Verify EXP and level persistence
+* Test timeout and disconnect scenarios
+* Balance troop vs tower damage values
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more info.
+
+---
 
 <div align="center">
-<table>
-<tr>
-<td align="center">
-  <b>Data Protection</b><br/>
-  <img src="https://img.shields.io/badge/Encryption-AES256-green?style=flat-square" alt="Encryption"/>
-</td>
-<td align="center">
-  <b>Authentication</b><br/>
-  <img src="https://img.shields.io/badge/Auth-JWT-blue?style=flat-square" alt="Authentication"/>
-</td>
-<td align="center">
-  <b>Protection</b><br/>
-  <img src="https://img.shields.io/badge/Security-DDoS%20Protection-red?style=flat-square" alt="Security"/>
-</td>
-</tr>
-</table>
+  <sub>Developed with ❤️ by Nguyễn Hải Quân - ITITWE21104</sub>
 </div>
-
-## 🤝 Contributing
-
-We welcome contributions! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-<div align="center">
-  <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=for-the-badge" alt="PRs Welcome"/>
-</div>
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-<div align="center">
-  <sub>Built with ❤️ by Your Name</sub>
-</div> 
+```
