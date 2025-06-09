@@ -1,148 +1,171 @@
-# 🎮 Game Server-Client TCP
+# 🎮 TCP Game Server-Client
 
-<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
-    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Tính Năng Chính</h2>
-    <ul style="list-style-type: none; padding-left: 0;">
-        <li style="margin: 10px 0; padding: 10px; background: white; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            <span style="color: #e74c3c;">🎯</span> Hệ thống đăng nhập và xác thực
-        </li>
-        <li style="margin: 10px 0; padding: 10px; background: white; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            <span style="color: #e74c3c;">🎮</span> Quản lý phiên chơi game
-        </li>
-        <li style="margin: 10px 0; padding: 10px; background: white; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            <span style="color: #e74c3c;">📊</span> Hệ thống xếp hạng
-        </li>
-        <li style="margin: 10px 0; padding: 10px; background: white; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            <span style="color: #e74c3c;">🔒</span> Bảo mật và mã hóa
-        </li>
-    </ul>
+<div align="center">
+  <img src="https://img.shields.io/badge/Go-1.16+-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go Version"/>
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="License"/>
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20MacOS-blue?style=for-the-badge" alt="Platform"/>
 </div>
 
-<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
-    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Cài Đặt</h2>
-    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h3 style="color: #2c3e50;">Yêu Cầu Hệ Thống</h3>
-        <ul>
-            <li>Go 1.16 trở lên</li>
-            <li>Windows/Linux/MacOS</li>
-        </ul>
-    </div>
-    
-    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 15px;">
-        <h3 style="color: #2c3e50;">Cài Đặt Dependencies</h3>
-        <pre style="background: #f1f1f1; padding: 10px; border-radius: 5px;"><code>go mod download</code></pre>
-    </div>
-    
-    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 15px;">
-        <h3 style="color: #2c3e50;">Biên Dịch</h3>
-        <pre style="background: #f1f1f1; padding: 10px; border-radius: 5px;"><code>go build -o server.exe server.go
-go build -o client.exe client.go</code></pre>
-    </div>
+<br/>
+
+<div align="center">
+  <h3>🚀 A powerful TCP-based game server-client implementation with advanced features</h3>
 </div>
 
-<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
-    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Cách Chơi</h2>
-    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h3 style="color: #2c3e50;">Khởi Động Server</h3>
-        <pre style="background: #f1f1f1; padding: 10px; border-radius: 5px;"><code>./server.exe</code></pre>
-    </div>
-    
-    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 15px;">
-        <h3 style="color: #2c3e50;">Khởi Động Client</h3>
-        <pre style="background: #f1f1f1; padding: 10px; border-radius: 5px;"><code>./client.exe</code></pre>
-    </div>
-    
-    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 15px;">
-        <h3 style="color: #2c3e50;">Các Lệnh Trong Game</h3>
-        <ul>
-            <li><code>/login [username] [password]</code> - Đăng nhập</li>
-            <li><code>/register [username] [password]</code> - Đăng ký</li>
-            <li><code>/play</code> - Bắt đầu chơi game</li>
-            <li><code>/quit</code> - Thoát game</li>
-        </ul>
-    </div>
+<br/>
+
+## 📋 Key Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 🎯 Authentication
+- Secure user login system
+- Account registration
+- Password encryption
+- Session management
+
+</td>
+<td width="50%">
+
+### 🎮 Game Management
+- Real-time game sessions
+- Player matchmaking
+- Game state synchronization
+- Multiplayer support
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 📊 Ranking System
+- Player statistics
+- Global leaderboards
+- Achievement tracking
+- Performance metrics
+
+</td>
+<td width="50%">
+
+### 🔒 Security
+- Data encryption
+- Anti-cheat protection
+- DDoS prevention
+- Secure communication
+
+</td>
+</tr>
+</table>
+
+## 🛠️ Installation
+
+### Prerequisites
+- Go 1.16 or higher
+- Git
+- Basic knowledge of TCP networking
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/tcp-game-server.git
+
+# Navigate to project directory
+cd tcp-game-server
+
+# Install dependencies
+go mod download
+
+# Build the project
+go build -o server.exe server.go
+go build -o client.exe client.go
+```
+
+## 🎮 How to Play
+
+### Starting the Server
+```bash
+./server.exe
+```
+
+### Starting the Client
+```bash
+./client.exe
+```
+
+### Available Commands
+
+<table>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><code>/login [username] [password]</code></td>
+<td>Login to your account</td>
+</tr>
+<tr>
+<td><code>/register [username] [password]</code></td>
+<td>Create a new account</td>
+</tr>
+<tr>
+<td><code>/play</code></td>
+<td>Start a new game session</td>
+</tr>
+<tr>
+<td><code>/quit</code></td>
+<td>Exit the game</td>
+</tr>
+</table>
+
+## 📁 Project Structure
+
+```
+.
+├── server.go          # Main server implementation
+├── client.go          # Main client implementation
+├── clients.go         # Client management system
+├── json_utils.go      # JSON data handling
+├── level_utils.go     # Level progression system
+├── go.mod            # Go module dependencies
+└── README.md         # Project documentation
+```
+
+## 🔒 Security Features
+
+<div align="center">
+<table>
+<tr>
+<td align="center">
+  <b>Data Protection</b><br/>
+  <img src="https://img.shields.io/badge/Encryption-AES256-green?style=flat-square" alt="Encryption"/>
+</td>
+<td align="center">
+  <b>Authentication</b><br/>
+  <img src="https://img.shields.io/badge/Auth-JWT-blue?style=flat-square" alt="Authentication"/>
+</td>
+<td align="center">
+  <b>Protection</b><br/>
+  <img src="https://img.shields.io/badge/Security-DDoS%20Protection-red?style=flat-square" alt="Security"/>
+</td>
+</tr>
+</table>
 </div>
 
-<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
-    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Cấu Trúc Dự Án</h2>
-    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <pre style="background: #f1f1f1; padding: 10px; border-radius: 5px;"><code>.
-├── server.go          # Server chính
-├── client.go          # Client chính
-├── clients.go         # Quản lý client
-├── json_utils.go      # Xử lý JSON
-├── level_utils.go     # Quản lý level
-├── go.mod            # Quản lý dependencies
-└── README.md         # Tài liệu</code></pre>
-    </div>
+## 🤝 Contributing
+
+We welcome contributions! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+<div align="center">
+  <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=for-the-badge" alt="PRs Welcome"/>
 </div>
 
-<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
-    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Bảo Mật</h2>
-    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <ul>
-            <li>Mã hóa dữ liệu truyền tải</li>
-            <li>Xác thực người dùng</li>
-            <li>Bảo vệ chống tấn công</li>
-        </ul>
-    </div>
-</div>
+## 📝 License
 
-<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
-    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Đóng Góp</h2>
-    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <p>Mọi đóng góp đều được hoan nghênh! Vui lòng tạo issue hoặc pull request.</p>
-    </div>
-</div>
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
-    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Giấy Phép</h2>
-    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <p>MIT License</p>
-    </div>
-</div>
-
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.6;
-        color: #333;
-    }
-    
-    h1 {
-        color: #2c3e50;
-        text-align: center;
-        font-size: 2.5em;
-        margin-bottom: 30px;
-    }
-    
-    h2 {
-        font-size: 1.8em;
-        margin-top: 30px;
-    }
-    
-    h3 {
-        font-size: 1.4em;
-        margin-top: 20px;
-    }
-    
-    code {
-        background-color: #f1f1f1;
-        padding: 2px 5px;
-        border-radius: 3px;
-        font-family: 'Courier New', Courier, monospace;
-    }
-    
-    pre {
-        margin: 15px 0;
-        overflow-x: auto;
-    }
-    
-    ul {
-        padding-left: 20px;
-    }
-    
-    li {
-        margin: 5px 0;
-    }
-</style> 
+<div align="center">
+  <sub>Built with ❤️ by Your Name</sub>
+</div> 
