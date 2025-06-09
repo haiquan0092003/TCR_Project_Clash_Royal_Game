@@ -1,156 +1,148 @@
-# Game Tower Defense Multiplayer
+# 🎮 Game Server-Client TCP
 
-Một game Tower Defense đơn giản cho phép nhiều người chơi tham gia thông qua mạng LAN. Game được viết bằng Go, sử dụng TCP socket để giao tiếp giữa client và server.
+<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Tính Năng Chính</h2>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin: 10px 0; padding: 10px; background: white; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <span style="color: #e74c3c;">🎯</span> Hệ thống đăng nhập và xác thực
+        </li>
+        <li style="margin: 10px 0; padding: 10px; background: white; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <span style="color: #e74c3c;">🎮</span> Quản lý phiên chơi game
+        </li>
+        <li style="margin: 10px 0; padding: 10px; background: white; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <span style="color: #e74c3c;">📊</span> Hệ thống xếp hạng
+        </li>
+        <li style="margin: 10px 0; padding: 10px; background: white; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <span style="color: #e74c3c;">🔒</span> Bảo mật và mã hóa
+        </li>
+    </ul>
+</div>
 
-## 🎮 Tính Năng
+<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Cài Đặt</h2>
+    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h3 style="color: #2c3e50;">Yêu Cầu Hệ Thống</h3>
+        <ul>
+            <li>Go 1.16 trở lên</li>
+            <li>Windows/Linux/MacOS</li>
+        </ul>
+    </div>
+    
+    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 15px;">
+        <h3 style="color: #2c3e50;">Cài Đặt Dependencies</h3>
+        <pre style="background: #f1f1f1; padding: 10px; border-radius: 5px;"><code>go mod download</code></pre>
+    </div>
+    
+    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 15px;">
+        <h3 style="color: #2c3e50;">Biên Dịch</h3>
+        <pre style="background: #f1f1f1; padding: 10px; border-radius: 5px;"><code>go build -o server.exe server.go
+go build -o client.exe client.go</code></pre>
+    </div>
+</div>
 
-- Đăng nhập với username/password
-- Hệ thống level và EXP
-- Nhiều loại quân với khả năng khác nhau
-- 3 loại tháp: 2 Guard Tower và 1 King Tower
-- Queen có khả năng hồi máu cho tháp
-- Tăng 50% sát thương khi tấn công King Tower
-- Lưu trữ tiến trình chơi game
+<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Cách Chơi</h2>
+    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h3 style="color: #2c3e50;">Khởi Động Server</h3>
+        <pre style="background: #f1f1f1; padding: 10px; border-radius: 5px;"><code>./server.exe</code></pre>
+    </div>
+    
+    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 15px;">
+        <h3 style="color: #2c3e50;">Khởi Động Client</h3>
+        <pre style="background: #f1f1f1; padding: 10px; border-radius: 5px;"><code>./client.exe</code></pre>
+    </div>
+    
+    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 15px;">
+        <h3 style="color: #2c3e50;">Các Lệnh Trong Game</h3>
+        <ul>
+            <li><code>/login [username] [password]</code> - Đăng nhập</li>
+            <li><code>/register [username] [password]</code> - Đăng ký</li>
+            <li><code>/play</code> - Bắt đầu chơi game</li>
+            <li><code>/quit</code> - Thoát game</li>
+        </ul>
+    </div>
+</div>
 
-## 🛠️ Yêu Cầu Hệ Thống
+<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Cấu Trúc Dự Án</h2>
+    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <pre style="background: #f1f1f1; padding: 10px; border-radius: 5px;"><code>.
+├── server.go          # Server chính
+├── client.go          # Client chính
+├── clients.go         # Quản lý client
+├── json_utils.go      # Xử lý JSON
+├── level_utils.go     # Quản lý level
+├── go.mod            # Quản lý dependencies
+└── README.md         # Tài liệu</code></pre>
+    </div>
+</div>
 
-- Go 1.20 trở lên
-- Hệ điều hành: Windows/Linux/MacOS
-- Kết nối mạng LAN
+<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Bảo Mật</h2>
+    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <ul>
+            <li>Mã hóa dữ liệu truyền tải</li>
+            <li>Xác thực người dùng</li>
+            <li>Bảo vệ chống tấn công</li>
+        </ul>
+    </div>
+</div>
 
-## 📦 Cài Đặt
+<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Đóng Góp</h2>
+    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <p>Mọi đóng góp đều được hoan nghênh! Vui lòng tạo issue hoặc pull request.</p>
+    </div>
+</div>
 
-1. Clone repository:
-```bash
-git clone https://github.com/your-username/tower-defense-game.git
-cd tower-defense-game
-```
+<div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Giấy Phép</h2>
+    <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <p>MIT License</p>
+    </div>
+</div>
 
-2. Cài đặt dependencies:
-```bash
-go mod download
-```
-
-3. Tạo file cấu hình:
-```bash
-mkdir data
-```
-
-4. Tạo file `data/players.json`:
-```json
-[
-    {
-        "username": "player1",
-        "password": "pass1",
-        "level": 1,
-        "exp": 0
-    },
-    {
-        "username": "player2",
-        "password": "pass2",
-        "level": 1,
-        "exp": 0
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
     }
-]
-```
-
-5. Tạo file `data/troops.json`:
-```json
-[
-    {
-        "name": "Warrior",
-        "atk": 100,
-        "def": 50,
-        "mana": 0
-    },
-    {
-        "name": "Archer",
-        "atk": 150,
-        "def": 30,
-        "mana": 0
-    },
-    {
-        "name": "Queen",
-        "atk": 80,
-        "def": 40,
-        "mana": 200
+    
+    h1 {
+        color: #2c3e50;
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 30px;
     }
-]
-```
-
-## 🚀 Chạy Game
-
-1. Khởi động server:
-```bash
-go run server/server.go
-```
-
-2. Khởi động client (trên máy khác):
-```bash
-go run clients/clients.go
-```
-
-## 🎯 Cách Chơi
-
-1. Đăng nhập với username và password
-2. Chờ người chơi khác tham gia
-3. Mỗi người chơi nhận được 3 quân ngẫu nhiên
-4. Lần lượt chọn quân để tấn công
-5. Quân sẽ tự động tấn công tháp đầu tiên còn sống
-6. Queen có thể hồi máu cho tháp đồng minh
-7. Phá hủy King Tower của đối phương để chiến thắng
-8. Người thắng nhận được 30 EXP
-
-## 📊 Hệ Thống Level
-
-- Level 1: 100 EXP
-- Level 2: 110 EXP (tăng 10%)
-- Level 3: 121 EXP (tăng 10%)
-- Và cứ tiếp tục...
-
-## 🏗️ Cấu Trúc Project
-
-```
-tower-defense-game/
-├── server/
-│   └── server.go
-├── clients/
-│   └── clients.go
-├── utils/
-│   ├── json_utils.go
-│   └── level_utils.go
-├── models/
-│   ├── player.go
-│   ├── troop.go
-│   └── tower.go
-└── data/
-    ├── players.json
-    ├── troops.json
-    └── towers.json
-```
-
-## ⚠️ Lưu Ý
-
-- Server chạy trên cổng 8080
-- Timeout cho mỗi lượt chơi là 30 giây
-- Tối đa 10 người chơi trong hàng đợi
-- Chỉ hỗ trợ 2 người chơi mỗi trận
-
-## 🔧 Cấu Hình
-
-Các thông số có thể điều chỉnh trong code:
-- Port: 8080
-- Timeout: 30 giây
-- Số lượng quân mỗi người: 3
-- HP Guard Tower: 1000
-- HP King Tower: 2000
-- EXP thưởng: 30
-- Hệ số tăng EXP: 10%
-
-## 🤝 Đóng Góp
-
-Mọi đóng góp đều được hoan nghênh! Vui lòng tạo issue hoặc pull request.
-
-## 📝 License
-
-MIT License 
+    
+    h2 {
+        font-size: 1.8em;
+        margin-top: 30px;
+    }
+    
+    h3 {
+        font-size: 1.4em;
+        margin-top: 20px;
+    }
+    
+    code {
+        background-color: #f1f1f1;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    pre {
+        margin: 15px 0;
+        overflow-x: auto;
+    }
+    
+    ul {
+        padding-left: 20px;
+    }
+    
+    li {
+        margin: 5px 0;
+    }
+</style> 
