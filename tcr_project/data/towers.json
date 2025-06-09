@@ -1,5 +1,0 @@
-[
-    { "name": "King Tower", "hp": 1000, "atk": 500, "def": 50, "crit": 0.1, "exp": 200 },
-    { "name": "Guard Tower", "hp": 500, "atk": 500, "def": 100, "crit": 0.05, "exp": 100 }
-  ]
-  
